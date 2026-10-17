@@ -1,4 +1,6 @@
 import UIKit
+import livekit_react_native
+import livekit_react_native_webrtc
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -6,6 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
-    true
+    LivekitReactNative.setup()
+    return true
   }
 }

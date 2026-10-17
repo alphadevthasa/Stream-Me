@@ -7,13 +7,21 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "test:live-token": "node --test server/livekit/*.spec.mjs",
+    "live:server": "livekit-server --dev --bind 0.0.0.0",
+    "live:tokens": "node server/livekit/server.mjs"
   },
   "dependencies": {
+    "@livekit/react-native": "^3.0.0",
+    "@livekit/react-native-webrtc": "^144.2.0",
+    "@react-native/new-app-screen": "0.88.0",
+    "livekit-client": "^2.23.0",
+    "livekit-server-sdk": "^2.19.1",
     "react": "19.3.0",
     "react-native": "0.88.0",
-    "@react-native/new-app-screen": "0.88.0",
-    "react-native-safe-area-context": "^5.5.2"
+    "react-native-safe-area-context": "^5.5.2",
+    "react-native-video": "^6.19.3"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

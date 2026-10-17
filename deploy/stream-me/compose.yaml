@@ -1,0 +1,22 @@
+services:
+  livekit:
+    image: livekit/livekit-server:v1.13.10
+    command: ["--config", "/etc/livekit.yaml"]
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - ./livekit.yaml:/etc/livekit.yaml:ro
+
+  backend:
+    build: .
+    network_mode: host
+    restart: unless-stopped
+    depends_on:
+      - livekit
+    environment:
+      LIVE_TOKEN_PORT: "3001"
+      LIVE_ROOM: streamme-demo
+      LIVEKIT_URL: ws://127.0.0.1:7880
+      LIVEKIT_PUBLIC_URL: ${LIVEKIT_PUBLIC_URL}
+      LIVEKIT_API_KEY: ${LIVEKIT_API_KEY}
+      LIVEKIT_API_SECRET: ${LIVEKIT_API_SECRET}

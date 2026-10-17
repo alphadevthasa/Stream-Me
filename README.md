@@ -1,97 +1,73 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Stream Me
 
-# Getting Started
+Stream Me is a native iOS and Android prototype for vertical video streaming and live broadcasts. The navigation shell uses native platform code, while the Reels feed and live experience are built with React Native.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Demo
 
-## Step 1: Start Metro
+Swipe through two different server-hosted videos:
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+![Stream Me video feed swiping between two videos](docs/media/video-swipe.gif)
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+Live streaming lobby and broadcast entry point:
+
+![Stream Me live streaming screen](docs/media/live-stream.png)
+
+## Features
+
+- Vertical, swipeable video feed with four sample HLS streams.
+- Reel-style creator, caption, like, comment, share, and save controls.
+- Caption detail sheet with creator details and comments.
+- Live creator list with separate sessions and a start-broadcast action.
+- LiveKit camera and microphone broadcast from Android, with viewers on iOS or Android.
+- Native bottom navigation for **Beranda** and **Live Stream**.
+
+## Project layout
+
+- `App.tsx` — React Native feed, navigation state, and session joining.
+- `LiveLobby.tsx`, `LiveRoom.tsx` — live session discovery and LiveKit room UI.
+- `ios/StreamMe/` — native iOS app and UIKit navigation shell.
+- `android/app/` — Android app and native navigation shell.
+- `server/livekit/` — development token service and tests.
+- `deploy/stream-me/` — Docker deployment configuration for the token service and LiveKit.
+- `docs/` — product scope, live testing notes, and screenshots.
+
+## Requirements
+
+- Node.js 22.11 or newer.
+- Xcode and iOS Simulator for iOS builds.
+- Android Studio, Android SDK, and an emulator or device for Android builds.
+- CocoaPods for iOS dependencies.
+
+## Install and run
 
 ```sh
-# Using npm
+npm install
+cd ios && pod install && cd ..
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
+In a second terminal, run either platform:
 
 ```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
 npm run ios
-
-# OR using Yarn
-yarn ios
+# or
+npm run android
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+Open **Live Stream** to browse available broadcasts or start one on Android. Open **Beranda** to swipe through the video feed. The included HLS URLs are public demo streams and can change independently of this project.
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## Live streaming backend
 
-## Step 3: Modify your app
+The app is configured to use the demo endpoint in `liveConfig.ts`. For local development, follow [docs/live-local.md](docs/live-local.md). The included token service uses development credentials by default and does not provide user authentication. Do not use the demo configuration for a production service; configure a secured LiveKit deployment and authenticated token issuance first.
 
-Now that you have successfully run the app, let's make changes!
+## Checks
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+```sh
+npm run lint
+npx tsc --noEmit
+npm test -- --runInBand
+npm run test:live-token
+cd android && ./gradlew :app:assembleDebug
+```
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Build the iOS simulator target with the `StreamMe` scheme in `ios/StreamMe.xcodeproj` or `ios/StreamMe.xcworkspace`.
