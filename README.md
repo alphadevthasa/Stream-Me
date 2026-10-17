@@ -4,7 +4,7 @@ Stream Me is a native iOS and Android prototype for vertical video streaming and
 
 ## Demo
 
-Each video plays for about four seconds before the feed swipes to the next one. The video and live streaming demos are shown side by side:
+Each real HLS video plays for four seconds before the feed swipes to the next one. The video and live streaming demos are shown side by side:
 
 <table>
   <tr>
