@@ -59,7 +59,7 @@ Open **Live Stream** to browse available broadcasts or start one on Android. Ope
 
 ## Live streaming backend
 
-The app is configured to use the demo endpoint in `liveConfig.ts`. For local development, follow [docs/live-local.md](docs/live-local.md). The included token service uses development credentials by default and does not provide user authentication. Do not use the demo configuration for a production service; configure a secured LiveKit deployment and authenticated token issuance first.
+Replace `your_public_ip` in `liveConfig.ts` and the iOS ATS domain entry in `ios/StreamMe/Info.plist` with the public IP of your server before testing live features. For local development, follow [docs/live-local.md](docs/live-local.md). The included token service uses development credentials by default and does not provide user authentication. Do not use the demo configuration for a production service; configure a secured LiveKit deployment and authenticated token issuance first.
 
 ## Checks
 
