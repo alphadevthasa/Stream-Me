@@ -4,13 +4,14 @@ Stream Me is a native iOS and Android prototype for vertical video streaming and
 
 ## Demo
 
-Swipe through two different server-hosted videos:
+Each video plays for about four seconds before the feed swipes to the next one. The video and live streaming demos are shown side by side:
 
-![Stream Me video feed swiping between two videos](docs/media/video-swipe.gif)
-
-Live streaming lobby and broadcast entry point:
-
-![Stream Me live streaming screen](docs/media/live-stream.png)
+<table>
+  <tr>
+    <td align="center"><strong>Video streaming · swipe</strong><br><img src="docs/media/video-swipe.gif" width="280" alt="Two different videos playing for four seconds each before a swipe"></td>
+    <td align="center"><strong>Live streaming</strong><br><img src="docs/media/live-stream.png" width="280" alt="Stream Me live streaming lobby and broadcast entry point"></td>
+  </tr>
+</table>
 
 ## Features
 
